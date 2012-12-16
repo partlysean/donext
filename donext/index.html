@@ -1,0 +1,49 @@
+<head>
+	<title>DoNext</title>
+</head>
+<body>
+	{{> todo_lists}}
+	{{> list_items}}
+</body>
+
+<!-- ADD TODO LIST -->
+<template name="add_todo_list">
+	<form name="addTodoListForm">
+		<input type="text" name="addTodoListInput" placeholder="Create a new list..." />
+	</form>
+</template>
+
+<!-- TODO LISTS -->
+<template name="todo_lists">
+	<h1>Todo Lists</h1>
+	{{> add_todo_item}}
+	
+	<ul>
+		{{#each lists}}
+			<li>{{name}}</li>
+		{{else}}
+			No todo lists&hellip;
+		{{/each}}
+	</ul>
+</template>
+
+<!-- ADD TODO ITEM -->
+<template name="add_todo_item">
+	<form name="addTodoItemForm">
+		<input type="text" name="addTodoItemInput" placeholder="Create a new todo..." />
+	</form>
+</template>
+
+<!-- LIST ITEMS -->
+<template name="list_items">
+	<h2>List Items</h2>
+	{{> add_todo_item}}
+	
+	<ul>
+		{{#each items}}
+			<li>{{description}}</li>
+		{{else}}
+			No items in this list&hellip;
+		{{/each}}
+	</ul>
+</template>
