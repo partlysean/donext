@@ -16,6 +16,9 @@ Items = new Meteor.Collection('items');
 // Currently selected todo list
 Session.set('currentTodoList');
 
+// Todo items are showing
+Session.set('showingTodoItems');
+
 /* Running on the client...
 ------------------------------------------------------------ */
 
@@ -37,6 +40,13 @@ if (Meteor.isClient) {
 		}
 	});
 	
+	// Show or hide list items
+	Template.list_items.preserve(['#list-items']); // Preserved for animation
+	
+	Template.list_items.isShowing = function() {
+		return Session.equals('showingTodoItems', true) ? 'slide-view' : '';
+	};
+	
 	// Return all todo lists
 	Template.todo_lists.lists = function() {
 		return Lists.find();
@@ -45,7 +55,11 @@ if (Meteor.isClient) {
 	// Todo List Template Events
 	Template.todo_lists.events({
 		'click': function() {
+			// Update the currently selected todo list
 			Session.set('currentTodoList', this._id);
+			
+			// Now showing todo items...
+			Session.set('showingTodoItems', true);
 		}
 	});
 	

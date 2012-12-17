@@ -1,9 +1,13 @@
 <head>
 	<title>DoNext</title>
+	<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no" />
+    <meta charset="utf-8" />
 </head>
 <body>
-	{{> todo_lists}}
-	{{> list_items}}
+	<div class="list-card">
+		{{> todo_lists}}
+		{{> list_items}}
+	</div>
 </body>
 
 <!-- ADD TODO LIST -->
@@ -15,8 +19,7 @@
 
 <!-- TODO LISTS -->
 <template name="todo_lists">
-	<h1>Todo Lists</h1>
-	{{> add_todo_item}}
+	{{! {{> add_todo_list}}
 	
 	<ul>
 		{{#each lists}}
@@ -36,14 +39,15 @@
 
 <!-- LIST ITEMS -->
 <template name="list_items">
-	<h2>List Items</h2>
-	{{> add_todo_item}}
-	
-	<ul>
-		{{#each items}}
-			<li>{{description}}</li>
-		{{else}}
-			No items in this list&hellip;
-		{{/each}}
-	</ul>
+	<div id="list-items" class="{{isShowing}}">
+        {{! {{> add_todo_item}}
+        
+        <ul>
+            {{#each items}}
+            	<li>{{description}}</li>
+            {{else}}
+            	No items in this list&hellip;
+            {{/each}}
+        </ul>
+	</div>
 </template>
