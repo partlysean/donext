@@ -23,7 +23,7 @@
 	
 	<ul>
 		{{#each lists}}
-			<li>{{name}}</li>
+			<li><a href="#">{{name}}</a></li>
 		{{else}}
 			No todo lists&hellip;
 		{{/each}}
@@ -40,7 +40,7 @@
 <!-- LIST ITEMS -->
 <template name="list_items">
 	<div id="list-items" class="{{isShowing}}">
-        {{! {{> add_todo_item}}
+        {{> add_todo_item}}
         
         <ul>
             {{#each items}}

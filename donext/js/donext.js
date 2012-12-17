@@ -19,10 +19,30 @@ Session.set('currentTodoList');
 // Todo items are showing
 Session.set('showingTodoItems');
 
+/* Globals
+------------------------------------------------------------ */
+
+var listItemsEle;
+var touchStartX;
+
+/* Prevent default dragging behavior
+------------------------------------------------------------ */
+
+function preventBehavior(event) {
+	event.preventDefault(); 
+};
+
 /* Running on the client...
 ------------------------------------------------------------ */
 
 if (Meteor.isClient) {
+	// DOM is ready
+	Meteor.startup(function() {
+		listItemsEle = document.getElementById('list-items');
+		
+		document.addEventListener('touchmove', preventBehavior, false);
+	});
+	
 	// Add new todo list
 	Template.add_todo_list.events({
 		'submit': function(event) {
@@ -54,7 +74,10 @@ if (Meteor.isClient) {
 	
 	// Todo List Template Events
 	Template.todo_lists.events({
-		'click': function() {
+		'click': function(event) {
+			// Prevent default link action
+			event.preventDefault();
+			
 			// Update the currently selected todo list
 			Session.set('currentTodoList', this._id);
 			
@@ -88,13 +111,50 @@ if (Meteor.isClient) {
 	
 	// Return currently selected todo list items	
 	Template.list_items.items = function() {
-		return Items.find({'parentListId': Session.get('currentTodoList')});
+		return Items.find({ 'parentListId': Session.get('currentTodoList') });
 	};
+	
+	// List Items Template Events
+	Template.list_items.events({
+		'touchstart': function(event) {
+			touchStartX = event.targetTouches[0];
+		},
+		
+		'touchmove': function(event) {
+			var curX = event.targetTouches[0].pageX;
+			
+			event.targetTouches[0].target.style.webkitTransform = 'translateX(' + curX + 'px)';
+		},
+		
+		'touchend': function(event) {
+			// If the drag is ended early, move it to the far right
+			listItemsEle.style.webkitTransform = 'translateX(320px)';
+			
+			// Now showing list items...
+			Session.set('showingTodoItems', false);
+		}
+	});
 }
 
 /* Running on the server...
 ------------------------------------------------------------ */
 
 if (Meteor.isServer) {
-	// Do stuff on the server...
+	// Create some database entries if they don't exist
+	Meteor.startup(function() {
+	    if (Lists.find().count() === 0) {
+			var lists = [
+				'Work',
+				'School',
+				'Just Landed',
+				'Shopping',
+				'Home',
+				'Christmas'
+			];
+                   
+			for (var i = 0; i < lists.length; i++) {
+				Lists.insert({ name: lists[i] });
+			}
+		}
+	});
 }
