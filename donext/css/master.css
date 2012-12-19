@@ -91,6 +91,10 @@ a {
 	width: 100%;
 	background: #300030;
 	padding: 40px 0;
+	-o-box-shadow: 0 -2px 10px 8px #250025;
+	-moz-box-shadow: 0 -2px 10px 8px #250025;
+	-webkit-box-shadow: 0 -2px 10px 8px #250025;
+	box-shadow: 0 -2px 10px 8px #250025;
 }
 
 /* Forms
