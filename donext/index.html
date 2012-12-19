@@ -1,33 +1,41 @@
 <head>
 	<title>DoNext</title>
-	<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no" />
     <meta charset="utf-8" />
 </head>
 <body>
-	<div class="list-card">
+	<div id="body-wrapper">
 		{{> todo_lists}}
-		{{> list_items}}
+	
+		<div id="add-bar">
+			<div class="centered-content">
+				{{> add_todo_list}}
+			</div>
+		</div>
 	</div>
 </body>
 
-<!-- ADD TODO LIST -->
+<!-- ADD LIST/ITEM -->
 <template name="add_todo_list">
-	<form name="addTodoListForm">
-		<input type="text" name="addTodoListInput" placeholder="Create a new list..." />
+	<form class="add-new-form" name="addTodoListForm">
+		<input type="text" name="addTodoListInput" autofocus="autofocus" placeholder="Create a new todo list&hellip;" />
 	</form>
 </template>
 
 <!-- TODO LISTS -->
 <template name="todo_lists">
-	{{! {{> add_todo_list}}
-	
-	<ul>
-		{{#each lists}}
-			<li><a href="#">{{name}}</a></li>
-		{{else}}
-			No todo lists&hellip;
-		{{/each}}
-	</ul>
+	<div id="todo-lists">
+		<div class="centered-content">
+			<ul>
+				{{#each lists}}
+					<li>
+						<h2><a href="#">{{name}}</a></h2>
+					</li>
+				{{else}}
+					No todo lists&hellip;
+				{{/each}}
+			</ul>
+		</div>
+	</div>
 </template>
 
 <!-- ADD TODO ITEM -->
