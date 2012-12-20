@@ -1,58 +1,54 @@
 <head>
-	<title>DoNext</title>
+	<title>DoNext &nbsp;&check;&nbsp; Brain Friendly Todos</title>
     <meta charset="utf-8" />
 </head>
 <body>
 	<div id="body-wrapper">
-		{{> todo_lists}}
+		<!-- MAIN CONTENT -->
+		<div id="content">
+			<div class="centered-content">
+				{{> todo_lists}}
+				{{> list_items}}
+			</div>
+		</div>
 	
+		<!-- ADD BAR -->
 		<div id="add-bar">
 			<div class="centered-content">
-				{{> add_todo_list}}
+				{{> add_new}}
 			</div>
 		</div>
 	</div>
 </body>
 
 <!-- ADD LIST/ITEM -->
-<template name="add_todo_list">
-	<form class="add-new-form" name="addTodoListForm">
-		<input type="text" name="addTodoListInput" autofocus="autofocus" placeholder="Create a new todo list&hellip;" />
+<template name="add_new">
+	<form name="addNew">
+		<input type="text" name="addNew" autofocus="autofocus" placeholder="{{addInputPlaceholder}}" />
 	</form>
 </template>
 
 <!-- TODO LISTS -->
 <template name="todo_lists">
-	<div id="todo-lists">
-		<div class="centered-content">
-			<ul>
-				{{#each lists}}
-					<li>
-						<h2><a href="#">{{name}}</a></h2>
-					</li>
-				{{else}}
-					No todo lists&hellip;
-				{{/each}}
-			</ul>
-		</div>
+	<div id="todo-lists" class="{{isShowing}}">
+		<ul class="lists">
+		    {{#each lists}}
+		    	<li>
+		    		<h2><a href="#">{{name}}</a></h2>
+		    	</li>
+		    {{else}}
+		    	No todo lists&hellip;
+		    {{/each}}
+		</ul>
 	</div>
-</template>
-
-<!-- ADD TODO ITEM -->
-<template name="add_todo_item">
-	<form name="addTodoItemForm">
-		<input type="text" name="addTodoItemInput" placeholder="Create a new todo..." />
-	</form>
 </template>
 
 <!-- LIST ITEMS -->
 <template name="list_items">
-	<div id="list-items" class="{{isShowing}}">
-        {{> add_todo_item}}
-        
-        <ul>
+	<div id="list-items" class="{{isShowing}}">        
+        <ul class="lists">
             {{#each items}}
-            	<li>{{description}}</li>
+            	<li><h2>{{description}}</h2></li>
             {{else}}
             	No items in this list&hellip;
             {{/each}}
