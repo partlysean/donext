@@ -63,6 +63,31 @@ a {
 	margin: 80px 0 149px 0; /* 109px is height of the #add-bar */
 }
 
+/* List Items
+------------------------------ */
+
+ul.lists li {
+	position: relative;
+}
+
+ul.lists li h2 {
+	display: inline-block;
+	padding: 26px 0;
+	font-size: 60px;
+	font-weight: 200;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+ul.lists li h2 a {
+	color: rgba(255, 255, 255, 0.9);
+	-webkit-transition: text-shadow 0.1s ease-in-out;
+}
+
+ul.lists li h2 a:hover {
+	color: #fff;
+	text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 /* Todo Lists
 ------------------------------ */
 
@@ -84,7 +109,7 @@ a {
 	top: 0;
 	left: 0;
 	opacity: 0;
-	-webkit-transform: scale(0.9);
+	-webkit-transform: translateZ(0) scale(0.9);
 	-webkit-transition: opacity 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 	pointer-events: none; /* Click through this element */
 }
@@ -95,25 +120,15 @@ a {
 	pointer-events: auto;
 }
 
-/* List Items
------------------------------- */
-
-ul.lists li h2 {
-	display: inline-block;
-	padding: 26px 0;
-	font-size: 60px;
-	font-weight: 200;
-	color: rgba(255, 255, 255, 0.9);
-}
-
-ul.lists li h2 a {
-	color: rgba(255, 255, 255, 0.9);
-	-webkit-transition: text-shadow 0.1s ease-in-out;
-}
-
-ul.lists li h2 a:hover {
-	color: #fff;
-	text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+#list-items ul li a {
+	display: block;
+	position: absolute;
+	top: 31px;
+	left: -50px;
+	width: 18px;
+	height: 18px;
+	border: 2px solid #fff;
+	border-radius: 100%;
 }
 
 /* Add Bar

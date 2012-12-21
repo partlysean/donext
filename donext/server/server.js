@@ -11,6 +11,7 @@ Items = new Meteor.Collection('items');
 // description: Todo item text
 // parentListId: The _id of a corresponding Lists entry
 // dateCreated: Date the todo item was created
+// doNext: This is an item to do next (TRUE/FALSE)
 
 /* When the server starts up...
 ------------------------------------------------------------ */

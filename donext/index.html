@@ -47,8 +47,11 @@
 <template name="list_items">
 	<div id="list-items" class="{{isShowing}}">
         <ul class="lists">
+        	<li><h2>DoNext: {{doNextItem.description}}</h2></li>
             {{#each items}}
-            	<li><h2>{{description}}</h2></li>
+            	<li>
+            		<h2>{{description}}</h2>
+            	</li>
             {{else}}
             	No items in this list&hellip;
             {{/each}}

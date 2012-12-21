@@ -81,9 +81,14 @@ Template.todo_lists.events({
 /* Todo items
 ------------------------------ */
 
-// Return items from DB
+// Return the item to do next
+Template.list_items.doNextItem = function() {
+	return Items.findOne({ $and: [{ 'parentListId': Session.get('currentTodoList') }, { 'doNext': true }] });
+};
+
+// Return todo items that aren't ones to do next
 Template.list_items.items = function() {
-    return Items.find({ 'parentListId': Session.get('currentTodoList') });
+    return Items.find({ $and: [{ 'parentListId': Session.get('currentTodoList') }, { 'doNext': false }] });
 };
 
 /* Add new form
@@ -114,7 +119,8 @@ Template.add_new.events({
     		Items.insert({
         		description: inputData,
         		parentListId: Session.get('currentTodoList'),
-        		dateCreated: new Date()
+        		dateCreated: new Date(),
+        		doNext: false
         	});
     	}
     	
