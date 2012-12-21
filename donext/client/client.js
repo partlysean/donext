@@ -103,6 +103,8 @@ Template.add_new.events({
     	// Prevent default form action
     	event.preventDefault();
     	
+    	var doNextBool;
+    	
     	// Get the input value
     	var inputData = document.addNew.addNew.value;
     	
@@ -115,12 +117,20 @@ Template.add_new.events({
     		});
     	}
     	else {
+    		// If the list is empty, make the new item do next
+    		if (Items.find({ 'parentListId': Session.get('currentTodoList') }).count() === 0) {
+    			doNextBool = true;
+    		}
+    		else {
+    			doNextBool = false;
+    		}
+    		
     		// Create a new todo item
-    		Items.insert({
-        		description: inputData,
-        		parentListId: Session.get('currentTodoList'),
-        		dateCreated: new Date(),
-        		doNext: false
+        	Items.insert({
+        	    description: inputData,
+        	    parentListId: Session.get('currentTodoList'),
+        	    dateCreated: new Date(),
+        	    doNext: doNextBool
         	});
     	}
     	

@@ -46,22 +46,26 @@
 <!-- LIST ITEMS -->
 <template name="list_items">
 	<div id="list-items" class="{{isShowing}}">
-		<h1><span>Do Next</span></h1>
-		
-        <ul class="lists">
-        	<li><h2>{{doNextItem.description}}</h2></li>
-        </ul>
+		{{#if doNextItem}}
+        	<h1><span>Do Next</span></h1>
+        	
+        	<ul class="lists">
+        		<li><h2>{{doNextItem.description}}</h2></li>
+        	</ul>
+        {{/if}}
         
-        <h1><span>Do Later</span></h1>
-        
-        <ul class="lists">
-            {{#each items}}
-            	<li>
-            		<h2>{{description}}</h2>
-            	</li>
-            {{else}}
-            	No items in this list&hellip;
-            {{/each}}
-        </ul>
+        {{#if items}}
+            <h1><span>Do Later</span></h1>
+            
+            <ul class="lists">
+                {{#each items}}
+                	<li>
+                		<h2>{{description}}</h2>
+                	</li>
+                {{/each}}
+            </ul>
+        {{else}}
+        	No items in this list&hellip;
+        {{/if}}
 	</div>
 </template>

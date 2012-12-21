@@ -120,6 +120,7 @@ ul.lists li h2 a:hover {
 	left: 0;
 	width: 100%;
 	opacity: 0;
+	-webkit-transform-origin: top center;
 	-webkit-transform: translateZ(0) scale(0.9);
 	-webkit-transition: opacity 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 	pointer-events: none; /* Click through this element */
