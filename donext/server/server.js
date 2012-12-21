@@ -24,11 +24,15 @@ Meteor.startup(function() {
     		'Just Landed',
     		'Shopping',
     		'Home',
-    		'Christmas'
+    		'Christmas',
+    		'Finances'
     	];
                
     	for (var i = 0; i < lists.length; i++) {
-    		Lists.insert({ name: lists[i], dateCreated: new Date() });
+    		Lists.insert({
+    			name: lists[i],
+    			dateCreated: new Date()
+    		});
     	}
     }
 });

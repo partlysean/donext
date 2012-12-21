@@ -9,6 +9,7 @@ Items = new Meteor.Collection('items');
 
 // Currently selected todo list
 Session.set('currentTodoList');
+Session.set('currentTodoListName');
 
 // Todo items are showing
 Session.set('showingTodoItems');
@@ -70,6 +71,7 @@ Template.todo_lists.events({
     	
     	// Update the currently selected todo list
     	Session.set('currentTodoList', this._id);
+    	Session.set('currentTodoListName', this.name);
     	
     	// Now showing todo items...
     	Session.set('showingTodoItems', true);
@@ -88,7 +90,7 @@ Template.list_items.items = function() {
 ------------------------------ */
 
 Template.add_new.addInputPlaceholder = function() {
-    return Session.equals('showingTodoItems', true) ? 'Start typing to create a new todo...' : 'Start typing to create a new list...';
+    return Session.equals('showingTodoItems', true) ? 'Start typing to create a new ' + Session.get('currentTodoListName') + ' todo...' : 'Start typing to create a new list...';
 }
 
 Template.add_new.events({
