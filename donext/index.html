@@ -46,8 +46,15 @@
 <!-- LIST ITEMS -->
 <template name="list_items">
 	<div id="list-items" class="{{isShowing}}">
+		<h1><span>Do Next</span></h1>
+		
         <ul class="lists">
-        	<li><h2>DoNext: {{doNextItem.description}}</h2></li>
+        	<li><h2>{{doNextItem.description}}</h2></li>
+        </ul>
+        
+        <h1><span>Do Later</span></h1>
+        
+        <ul class="lists">
             {{#each items}}
             	<li>
             		<h2>{{description}}</h2>
