@@ -12,7 +12,7 @@ Session.set('currentTodoList');
 Session.set('currentTodoListName');
 
 // Todo items are showing
-Session.set('showingTodoItems');
+Session.set('showingTodoItems', false);
 
 /* DOM is ready
 ------------------------------------------------------------ */
@@ -109,7 +109,7 @@ Template.add_new.events({
     	var inputData = document.addNew.addNew.value;
     	
     	// If we're looking at todo lists...
-    	if (Session.equals('showingTodoItems')) {
+    	if (Session.equals('showingTodoItems', false)) {
     		// Create a new todo list
     		Lists.insert({
     		    name: inputData,
