@@ -54,7 +54,8 @@
         	</ul>
         {{/if}}
         
-        {{#if items}}
+        {{! If there are items to display... }}
+        {{#if items.length}}
             <h1><span>Do Later</span></h1>
             
             <ul class="lists">
@@ -65,7 +66,10 @@
                 {{/each}}
             </ul>
         {{else}}
-        	No items in this list&hellip;
+        	{{! Show this message only if there isn't a Do Next item }}
+        	{{#unless doNextItem}}
+	        	No items in this list&hellip;
+	        {{/unless}}
         {{/if}}
 	</div>
 </template>
