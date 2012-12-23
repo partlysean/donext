@@ -88,7 +88,7 @@ Template.list_items.doNextItem = function() {
 
 // Return todo items that aren't ones to do next
 Template.list_items.items = function() {
-    return Items.find({ $and: [{ 'parentListId': Session.get('currentTodoList') }, { 'doNext': false }] });
+    return Items.find({ $and: [{ 'parentListId': Session.get('currentTodoList') }, { 'doNext': false }] }, { sort: { dateCreated: -1 } });
 };
 
 /* Add new form

@@ -5,12 +5,10 @@
 <body>
 	<div id="body-wrapper">
 		<!-- MAIN CONTENT -->
-		<div id="content">
-			<div class="centered-content">
-				{{> todo_lists}}
-				{{> list_items}}
-			</div>
-		</div>
+        <div class="centered-content">
+            {{> todo_lists}}
+            {{> list_items}}
+        </div>
 	
 		<!-- ADD BAR -->
 		<div id="add-bar">
@@ -24,7 +22,7 @@
 <!-- ADD LIST/ITEM -->
 <template name="add_new">
 	<form name="addNew">
-		<input type="text" class="mousetrap" name="addNew" placeholder="{{addInputPlaceholder}}" />
+		<input type="text" class="mousetrap swipe" name="addNew" placeholder="{{addInputPlaceholder}}" />
 	</form>
 </template>
 

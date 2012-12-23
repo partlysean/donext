@@ -59,20 +59,8 @@ a {
 	width: 740px;
 }
 
-#content {
-	margin: 80px 0 149px 0; /* 109px is height of the #add-bar */
-}
-
 /* List Items
 ------------------------------ */
-
-ul.lists {
-	margin: 52px 0;
-}
-
-ul.lists:last-child {
-	margin-bottom: 0;
-}
 
 ul.lists li {
 	position: relative;
@@ -100,6 +88,9 @@ ul.lists li h2 a:hover {
 ------------------------------ */
 
 #todo-lists {
+	position: absolute;
+	top: 0;
+	padding: 52px 0 129px 0;
 	-webkit-transition: -webkit-transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 	-webkit-transform: translateZ(0); /* Enables hardware acceleration on mobile devices */
 }
@@ -117,13 +108,17 @@ ul.lists li h2 a:hover {
 #list-items {
 	position: absolute;
 	top: 0;
-	left: 0;
 	width: 100%;
+	padding: 62px 0 129px 0;
 	opacity: 0;
 	-webkit-transform-origin: top center;
 	-webkit-transform: translateZ(0) scale(0.9);
 	-webkit-transition: opacity 0.5s ease-in-out, -webkit-transform 0.5s ease-in-out;
 	pointer-events: none; /* Click through this element */
+}
+
+#list-items ul.lists {
+	margin: 32px 0;
 }
 
 /* Slide animation */
@@ -186,4 +181,23 @@ ul.lists li h2 a:hover {
 
 #add-bar form input::-webkit-input-placeholder {
 	color: rgba(255, 255, 255, 0.1);
+}
+
+/* iPhone Swipe Animation */
+
+#add-bar form input.swipe::-webkit-input-placeholder {
+	background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.1)), to(rgba(255, 255, 255, 0.1)), color-stop(0.1, rgba(255, 255, 255, 0.4)), color-stop(0.25, rgba(255, 255, 255, 0.1)));
+	background-position: -200px center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-animation: swipe 2s 1 linear 1s;
+}
+
+/* Animations
+------------------------------------------------------------ */
+
+@-webkit-keyframes swipe {
+    100% {
+        background-position: 500px center;
+    }
 }
